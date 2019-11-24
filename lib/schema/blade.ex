@@ -4,16 +4,28 @@ defmodule RevScam.Schema.Blade do
 
   alias RevScam.Schema.Brand
 
-  @fields [:name, :speed, :stiffness, :control, :overall, :price, :ratings]
+  @fields [
+    :name,
+    :speed,
+    :control,
+    :stiffness,
+    :hardness,
+    :consistency,
+    :overall,
+    :price,
+    :ratings
+  ]
 
   schema "blades" do
     field :name, :string
     field :speed, :float
     field :control, :float
     field :stiffness, :float
+    field :hardness, :float
+    field :consistency, :float
     field :overall, :float
-    field :price, :float
     field :ratings, :integer
+    field :price, :float
 
     belongs_to :brand, Brand
     timestamps()

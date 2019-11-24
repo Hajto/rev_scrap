@@ -1,7 +1,5 @@
 defmodule RevScam.DetailsImporter do
-  def perform(%{
-        type: type,
-        link: link
-      }) do
+  def import(type, link) do
+    data = RevScam.RevspinApi.get_details(link)
   end
 end

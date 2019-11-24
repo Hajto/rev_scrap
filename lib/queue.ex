@@ -7,19 +7,4 @@ defmodule RevScam.Queue do
       link: link
     })
   end
-
-  def parse_int!(int?) do
-    {parsed, ""} = Integer.parse(int?)
-    parsed
-  end
-
-  defp parse_revspin_float(input) when is_binary(input) do
-    input
-    |> String.trim()
-    |> Float.parse()
-    |> case do
-      {number, ""} -> number
-      :error -> nil
-    end
-  end
 end

@@ -34,4 +34,8 @@ defmodule RevScam.RevspinApi do
     end)
     |> Enum.filter(&match?({_, _}, &1))
   end
+
+  def get_details(link) do
+    HTTPoison.get!(@revspin_url <> "/" <> link).body
+  end
 end

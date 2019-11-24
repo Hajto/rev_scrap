@@ -4,13 +4,37 @@ defmodule RevScam.Schema.Rubber do
 
   alias RevScam.Schema.Brand
 
-  @fields [:name, :speed, :spin, :tackiness, :overall, :price, :ratings]
+  @fields [
+    :name,
+    :speed,
+    :spin,
+    :control,
+    :tackiness,
+    :weight,
+    :sponge_hardness,
+    :gears,
+    :throw_angle,
+    :consistency,
+    :durability,
+    :overall,
+    :price,
+    :ratings
+  ]
 
   schema "rubbers" do
     field :name, :string
+
     field :speed, :float
     field :spin, :float
+    field :control, :float
     field :tackiness, :float
+    field :weight, :float
+    field :sponge_hardness, :float
+    field :gears, :float
+    field :throw_angle, :float
+    field :consistency, :float
+    field :durability, :float
+
     field :overall, :float
     field :price, :float
     field :ratings, :integer
