@@ -37,4 +37,11 @@ defmodule RevScam.RevspinParserTest do
                name: "Donic Appelgren Allplay Senso V2"
              }
   end
+
+  test "Extracts links from blades page" do
+    assert File.read!("fixture/data/blades.html")
+           |> RevScam.RevspinParser.parse_links()
+           |> Enum.into(%{}) ==
+             File.read!("fixture/data/links.json") |> Jason.decode!()
+  end
 end

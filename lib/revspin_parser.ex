@@ -11,8 +11,38 @@ defmodule RevScam.RevspinParser do
     "consistency",
     "durability"
   ]
-
   @blade_props ["speed", "control", "stiffness", "hardness", "consistency"]
+  @ignored_brands ["armstrong"]
+
+  def parse_links(html) do
+    html
+    |> process_list_endpoint()
+    |> Enum.map(fn {brand, entries} ->
+      entries =
+        Floki.find(entries, "tr")
+        |> Enum.drop(1)
+        |> Enum.map(&parse_entry_for_link/1)
+
+      {brand, entries}
+    end)
+  end
+
+  defp parse_entry_for_link(entry_html) do
+    [{"a", attributes, _children}] = Floki.find(entry_html, "a")
+    {"href", link} = List.keyfind(attributes, "href", 0)
+    link
+  end
+
+  defp process_list_endpoint(html) do
+    Floki.find(html, ".max-xxs")
+    |> Enum.map(fn {"div", attributes, _children} = tag ->
+      case :lists.keyfind("id", 1, attributes) do
+        {"id", <<"brand-", id::binary>>} when id not in @ignored_brands -> {id, tag}
+        _ -> false
+      end
+    end)
+    |> Enum.filter(&match?({_, _}, &1))
+  end
 
   def parse_rubber_details(html) do
     common_props = extract_common_props(html)
