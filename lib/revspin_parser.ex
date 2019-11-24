@@ -71,7 +71,7 @@ defmodule RevScam.RevspinParser do
 
   defp extract_common_props(item_html) do
     [{"span", _, [{"span", _, [overall]} | _]}] =
-      Floki.find(item_html, "span[itemprop=\"ratingValue\"]")
+      Floki.find(item_html, "span[itemprop=\"ratingValue\"]") |> IO.inspect()
 
     %{
       name: extract_name(item_html),

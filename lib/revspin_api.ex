@@ -3,14 +3,17 @@ defmodule RevScam.RevspinApi do
   @revspin_url "https://revspin.net/"
 
   def find_links(path) do
-    response =
+    %HTTPoison.Response{status_code: 200, body: body} =
       (@revspin_url <> path <> "/")
       |> get!()
 
-    response.body
+    body
   end
 
   def get_details(link) do
-    HTTPoison.get!(@revspin_url <> "/" <> link).body
+    %HTTPoison.Response{status_code: 200, body: body} =
+      HTTPoison.get!(@revspin_url <> "/" <> link)
+
+    body
   end
 end
