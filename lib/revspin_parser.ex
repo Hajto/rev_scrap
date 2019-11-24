@@ -45,17 +45,17 @@ defmodule RevScam.RevspinParser do
   end
 
   def parse_rubber_details(html) do
-    common_props = extract_common_props(html)
-
-    @rubber_props
-    |> parse_expected_props(Floki.find(html, "#UserRatingsTable tr"))
-    |> Map.merge(common_props)
+    parse_product(html, @rubber_props)
   end
 
   def parse_blade_details(html) do
+    parse_product(html, @blade_props)
+  end
+
+  defp parse_product(html, fields) do
     common_props = extract_common_props(html)
 
-    @blade_props
+    fields
     |> parse_expected_props(Floki.find(html, "#UserRatingsTable tr"))
     |> Map.merge(common_props)
   end

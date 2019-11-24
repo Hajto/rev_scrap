@@ -3,7 +3,7 @@ use Mix.Config
 config :revscam, ecto_repos: [RevScam.Repo]
 
 config :revscam, RevScam.Repo,
-  database: "ecto_simple",
+  database: "revscam",
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
@@ -14,7 +14,7 @@ config :exq,
   host: "127.0.0.1",
   port: 6379,
   namespace: "revspin",
-  concurrency: 3,
+  concurrency: 10,
   queues: ["consumer_queue"],
   poll_timeout: 50,
   scheduler_poll_timeout: 200,

@@ -4,5 +4,13 @@ services:
     image: redis
     ports:
       - "6379:6379"
+  postgresql:
+    image: postgres
+    environment:
+      POSTGRES_DB: "revscam"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
+    ports:
+      - "5432:5432"
 volumes:
   logvolume01: {}
