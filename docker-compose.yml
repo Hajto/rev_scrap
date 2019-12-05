@@ -12,5 +12,9 @@ services:
       POSTGRES_USER: "postgres"
     ports:
       - "5432:5432"
+  metabase:
+    image: metabase
+    ports:
+      - "3000:3000"
 volumes:
   logvolume01: {}
