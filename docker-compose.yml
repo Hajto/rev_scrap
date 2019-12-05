@@ -13,7 +13,7 @@ services:
     ports:
       - "5432:5432"
   metabase:
-    image: metabase
+    image: metabase/metabase
     ports:
       - "3000:3000"
 volumes:
