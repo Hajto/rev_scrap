@@ -7,6 +7,11 @@ defmodule RevScam.Queue do
 
   def get_queue_size() do
     {:ok, size} = Exq.Api.queue_size(Exq.Api, "consumer_queue")
-    size
+    {:ok, retries} = Exq.Api.retries(Exq.Api)
+
+    retries_size =
+      retries |> Enum.map(fn job -> job.class == "RevScam.DetailsImporter" end) |> Enum.count()
+
+    size + retries_size
   end
 end
